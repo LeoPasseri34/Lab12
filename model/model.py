@@ -35,6 +35,8 @@ class Model:
     def getNodes(self):
         return self._graph.nodes()
 
+
+
     def getNumNodes(self):
         return self._graph.number_of_nodes()
 
@@ -42,7 +44,16 @@ class Model:
         return self._graph.number_of_edges()
 
     def getVolume(self):
-        volume = 0
-        for n in self._graph.nodes():
-            pass
+        self._nodiConnessi = []
+        self._volumi = []
+        for n in self.getNodes():
+            volume = 0
+            for e in self._graph.edges(n, data=True):
+                volume += e[2]['weight']
+            if volume > 0:
+                self._nodiConnessi.append(n)
+                self._volumi.append((n.Retailer_name, volume))
+        self._volumi.sort(key=lambda x: x[1], reverse=True)
+        return self._volumi
+
 

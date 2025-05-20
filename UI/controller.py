@@ -43,8 +43,10 @@ class Controller:
 
 
     def handle_volume(self, e):
-        pass
-
+        info = self._model.getVolume()
+        for i in info:
+            self._view.txtOut2.controls.append(ft.Text(f"{i[0]} -- {i[1]}"))
+        self._view.update_page()
 
     def handle_path(self, e):
         pass
